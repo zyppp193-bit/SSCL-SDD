@@ -1,0 +1,61 @@
+criterion:
+  classes_per_batch: 9
+  me_max: true
+  sharpen: 0.25
+  supervised_imgs_per_class: 5
+  supervised_views: 2
+  temperature: 0.1
+  unsupervised_batch_size: 256
+  unlabeled_supervised_imgs_per_class: 3
+data:
+  color_jitter_strength: 0.5
+  data_seed: 0
+  dataset: pathmnist
+  image_folder: pathmnist_raw/
+  label_smoothing: 0.1
+  multicrop: 2
+  us_multicrop: 2
+  normalize: true
+  root_path: datasets/
+  subset_path: subsets/pathmnist/5.0%_seed0.txt
+  subset_path_cls: subsets/pathmnist/5.0%_seed0_cls.txt
+  unique_classes_per_rank: false
+  unlabeled_frac: 0.95
+logging:
+  folder: experiments/pathmnist-5%
+  write_tag: sdd
+  wandb: false
+meta:
+  copy_data: false
+  device: cuda:0
+  load_checkpoint: false
+  save_checkpoint: true
+  start_task_idx: 0
+  model_name: resnet18
+  output_dim: 128
+  read_checkpoint: null
+  use_fp16: true
+  use_pred_head: false
+  name: sdd-pathmnist-r18-5%-3T
+  w_paws: 1
+  w_me_max: 1
+  w_online: 0.005
+  w_dist: 0.2
+  w_dist_more: 0
+  alpha: 0
+optimization:
+  epochs: 100
+  start_lr: 0.02
+  lr: 0.1
+  final_lr: 0.008
+  lr_cls: 0.12
+  momentum: 0.9
+  nesterov: false
+  warmup: 10
+  weight_decay: 1.0e-05
+continual:
+  num_tasks: 3
+  setting: current
+  mask: true
+  buffer_size: 500
+  detach: false
